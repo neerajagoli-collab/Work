@@ -1,0 +1,24 @@
+Approaches for implementing jwt_stateless.py file:
+1. Basic Flask Setup:
+	-App initialized with a secret key to sign JWT tokens securely.
+
+2. Login Flow using /login route:
+	-Accepts JSON request with username and password(which are pre given).
+	-Validates with dummy credentials.
+	  If valid, generates a JWT token:
+		Payload includes user (username) and exp (expiry x minutes from when we start).
+		Signed with HS256 algorithm using the secret key.
+	 Returns token to client as JSON.
+
+3. Protected Endpoint using /protected route:
+	-assign the JWT token in Authorization header.
+	-If missing → responds with 401 error as Unauthorized.
+	-If present, decodes and verifies using secret key.
+
+4. Handles errors such:
+a.ExpiredSignatureError: token expired.
+b.InvalidTokenError: token invalid.
+
+5. On success, responds with personalized message confirming authorization.
+
+6. Holds Stateless Nature: as no session or database is maintained and Token itself carries the authentication information.

@@ -1,0 +1,14 @@
+[
+    {
+        "name": "admin",
+        "password": "12345",
+        "role": "master",
+        "id": "b0980a9c-ccfc-429b-a96d-54bd686e8577"
+    },
+    {
+        "name": "admin",
+        "password": "12345",
+        "role": "slave",
+        "id": "6a1a001a-f304-4aef-86c2-6f65e9ad600d"
+    }
+]

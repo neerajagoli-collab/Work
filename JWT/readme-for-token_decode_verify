@@ -1,0 +1,22 @@
+Approaches for implementing jwt_decode_verify.py file:
+1. Uses Flask with SQLAlchemy and PostgreSQL.
+    - SECRET_KEY is configurable via environment variables.
+    - User data (email, name, hashed password) stored in users table.
+
+2. User Model: Each user has id, email, name, and a hashed password 
+3. Token Generation- generates JWT with payload including user_id, email, and expiry 
+    Encoded with HS256 algorithm and secret key.
+
+4. Registration Route it accepts email, name, password.Stores hashed password in DB.
+    Issues JWT upon successful registration.
+
+5. Login Router-Validates credentials against stored user data.
+    If valid, generates and returns JWT.
+
+6. Decode Route - it accepts token via header  and Verifies signature & expiry with SECRET_KEY.
+    Returns decoded header and payload if valid.
+
+7. Verify Route -used to verifying token authenticity.
+    Returns structured JSON with verification result.
+
+8. Optional Users Endpoint -displays List og registered users.

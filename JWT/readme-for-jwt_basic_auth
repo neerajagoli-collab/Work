@@ -1,0 +1,21 @@
+Approaches for implementing jwt_basic_auth.py file:
+1. Login Flow (/login):
+    - Uses HTTP Basic Auth. (using request.authorization),validates credentials (as mentioned NeerajaGoli/password).
+    If valid:
+        Generates Access Token (1-minute expiry or any other) with SECRET_KEY.
+        Generates Refresh Token (5-hour expiry or we can mention it) with REFRESH_SECRET.
+
+2. Token Validation (using token_required decorator):
+    - it c"hecks for token in header "x-access-token".
+    - Verifies signature with SECRET_KEY.
+    - Handles invalid/missing/expired tokens easily.
+
+3. Refresh Flow (/refresh):
+    - Client sends refresh token via header "x-refresh-token".
+    - Decoded with REFRESH_SECRET.
+    - If valid, issues a new Access Token.
+    - If expired → it askes user to re-login.
+
+4. Protected Route (/protected):
+    -Accessible only with valid "access token".
+    -Returns success JSON if authenticated.
